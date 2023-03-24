@@ -1,0 +1,73 @@
+<odoo>
+    <data>
+
+        <record id="view_departments_tree" model="ir.ui.view">
+            <field name="name">Departments</field>
+            <field name="model">hms.department</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="capacity"/>
+                    <field name="is_opened"/>
+                </tree> 
+            </field>
+        </record>
+   
+
+        <record id="action_departments" model="ir.actions.act_window">
+            <field name="name">Departments</field>
+            <field name="res_model">hms.department</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="menu_hms_main" name="Departments" />
+
+        <menuitem id="menu_departments" name="Departments" parent="menu_hms_main" action="action_departments"/>
+
+    </data>
+</odoo>
+
+
+
+<!-- each record is referred as record tag and his columns are reffered as field tag  -->
+
+<!-- attirubutes for fields readonly=True , invisible=True, required=True  attrs, domain=[("is_open",'=','true')]-->
+<!-- domain is to many2one column -->
+      <!-- inserts a new reocrd in database  -->
+        <!-- action is a table in the database -->
+        <!-- <record id="hms_id_form_view" model="ir.ui.view"> -->
+        <!-- anything you want in the name  -->
+        <!-- <field name="name">Student</field>  -->
+        <!-- here must be a model name like hms.patient -->
+        <!-- <field name="model">iti.student</field>
+        <field name="arch" type="xml"> 
+        <form>
+        <sheet> -->
+        <!-- to give a title to the group -->
+        <!-- wrap a group inside a group to have it as a table  David : Email  -->
+        <!-- <group string="Personal Information">
+           <group>
+               <field name="name"/>
+                <field name="info"/>
+               <field name="salary"/>         
+           </group>
+        </group>
+       
+
+        <notebook>
+        <page string="Description"> -->
+        <!-- using opreators field description will be invisble if the conditions are validated )both of them (and) -->
+        <!-- All conditions  must be satisfied (AND) -->
+        <!-- <field name="description" attrs="{'invisible':[('track_id','=',False),('name','=',False)]}"></field> -->
+        <!-- #################### -->
+        <!-- One Condition (Or) -->
+
+        <!-- <field name="description" attrs="{'invisible':['|',('track_id','=',False),('name','=',False)]}"></field> -->
+        <!-- add widget=many2many_tags to the field of many2many column -->
+        <!-- </page>
+        </notebook>
+        </sheet>
+        </form>
+        </field>
+
+
+        </record> -->

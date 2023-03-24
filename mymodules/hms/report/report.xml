@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <template id="report_patient_card">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <div class="page">
+                        <div class="header">
+                            <h1>Patient Status Report: <t t-esc="doc.name"/></h1>
+                        </div>
+                        <div>
+                        Name: <t t-esc="doc.name"/></t>
+                        Birth_Date: <t t-esc="doc.birhtdate"/>
+                        Age:<t t-esc="doc.age"/>
+                        Pcr : <t t-esc="doc.Pcr"/>
+                        Department:<t t-esc="doc.departemnt_id"/>
+                        Blood_Type : <t t-esc="doc.blood_type"/>
+                        Doctors: <t t-esc="doc.doctors_id"/>
+                        Email :   <t t-esc="doc.email"/>
+                        
+                        </div>
+                        <div class="body">
+                        <h1>Log History</h1>
+                            <table>
+                                <tr>
+                                    <th><strong>User:</strong></th>
+                                    <th><t t-esc="doc.creeate_uid"/></th>
+                                </tr>
+                                 <tr>
+                                    <th><strong>Date:</strong></th>
+                                    <th><t t-esc="doc.create_date"/></th>
+                                </tr>
+                                  <tr>
+                                    <th><strong>Info:</strong></th>
+                                    <th><t t-esc="doc.description"/></th>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

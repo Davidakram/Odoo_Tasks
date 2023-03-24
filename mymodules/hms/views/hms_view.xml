@@ -1,0 +1,101 @@
+
+<!-- you must use form with tree  and attrs are written in  form not in tree -->
+<odoo>
+    <data>
+
+           <record model="ir.ui.view" id="patient_form_view">
+            <field name="name">patient.form</field>
+            <field name="model">hms.patient</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                    <!-- here name calls the function and string is the value of button  -->
+                        <button name="set_to_serious"  type="object"  string="set_to_serious" attrs="{'invisible':[('state','=','serious')]}"/>
+                        <button name="set_to_good"  type="object"  string="set_to_good" attrs="{'invisible':[('state','=','good')]}"/> 
+                        <button name="set_to_fair"  type="object"  string="set_to_fair" attrs="{'invisible':[('state','in',('good','fair'))]}"/> 
+
+
+                        <!-- we write the status bar in lowecase -->
+                        <field name="state" widget="statusbar" statusbar_visible="good,fair,undetermined"/>
+
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="firstname"  attrs="{'required': True}"/>
+                            <field name="lastname"  attrs="{'required': True}"/>
+                            <field name="birhtdate"/>
+                            <field name='email'/>
+                            <field name="CR_Ratio" attrs="{'required': [('Pcr', '=', True)]}"/>
+                            <field name="blood_type"/>
+                            <field name="Pcr"/>
+                            <field name="images"/>
+                            <field name="address"/>
+                            <field name="age"/>
+                            <field name="computed_age"/>
+
+                            <field name="departemnt_id" domain ="[('is_opened', '=', True)]"/>
+                            <field name="doctors_id"  widget="many2many_tags" attrs="{'readonly': [('departemnt_id', '=', False)]}"/>
+                            <field name="history" attrs="{'invisible': [('age', '&lt;', 50)]}"/>
+                            <notebook>
+                                <page string='PatientLogs'>
+                                    <field name="logs_id" mode='tree'>
+                                        <tree string='logs'>
+                                                <field name="create_uid"/>
+                                                <field name="create_date"/>
+                                                <field name="description"/>
+                                        </tree>
+                                    </field>
+                                </page>
+                            </notebook>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_patient_tree" model="ir.ui.view">
+            <field name="name">Patients</field>
+            <field name="model">hms.patient</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="firstname" />
+                    <field name="lastname" />
+                    <field name='email'/>
+
+                    <field name="birhtdate"/>
+                    <field name="history"/>
+                    <field name="CR_Ratio"/>
+                    <field name="blood_type"/>
+                    <field name="Pcr"/>
+                    <field name="images"/>
+                    <field name="address"/>
+                    <field name="age"/>
+                    <field name="history"   />
+                    <field name="departemnt_id"/>
+                    <field name="state"/>
+                    <field name="doctors_id" />
+                </tree> 
+            </field>
+        </record>
+
+
+
+ 
+        <record model="ir.actions.act_window" id="hms_action">
+            <field name="name">Patients</field>
+            <field name="res_model">hms.patient</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <menuitem id="HmsMenu" name="Patient" />
+        <menuitem id="hms_patient_menu" name="Patients" parent="HmsMenu" action="hms_action"/>
+
+
+       
+
+    </data>
+</odoo>
+
+
+
+

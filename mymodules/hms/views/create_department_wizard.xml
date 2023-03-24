@@ -1,0 +1,58 @@
+
+<!-- you must use form with tree  and attrs are written in  form not in tree -->
+<odoo>
+    <data>
+
+           <record model="ir.ui.view" id="department_form_view">
+            <field name="name">department.form</field>
+            <field name="model">hms.departmentwizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"  attrs="{'required': True}"/>
+                            <field name="description" />
+                            <footer>
+                            <button   name="save_department"  /> 
+                            </footer>
+
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_patient_tree" model="ir.ui.view">
+            <field name="name">Departments</field>
+            <field name="model">hms.departmentwizard</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="description" />
+
+            
+                </tree> 
+            </field>
+        </record>
+
+
+
+ 
+        <record model="ir.actions.act_window" id="hms_action">
+            <field name="name">Departments</field>
+            <field name="res_model">hms.departmentwizard</field>
+            <field name="view_mode">form</field>
+        </record>
+        
+        <menuitem id="HmsMenu" name="Department" />
+        <menuitem id="hms_patient_menu" name="Patients" parent="HmsMenu" action="hms_action"/>
+
+
+       
+
+    </data>
+</odoo>
+
+
+
+
