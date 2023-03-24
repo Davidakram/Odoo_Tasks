@@ -24,7 +24,7 @@
                             <table>
                                 <tr>
                                     <th><strong>User:</strong></th>
-                                    <th><t t-esc="doc.creeate_uid"/></th>
+                                    <th><t t-esc="doc.create_uid"/></th>
                                 </tr>
                                  <tr>
                                     <th><strong>Date:</strong></th>
