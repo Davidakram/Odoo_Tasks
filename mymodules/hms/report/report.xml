@@ -19,6 +19,9 @@
                         Email :   <t t-esc="doc.email"/>
                         
                         </div>
+                        <div style="margin-left:100px">
+                        <img t-attf-src="data:image/*;base64,{{doc.images}}"style="width:200px;"/>
+                                    </div>
                         <div class="body">
                         <h1>Log History</h1>
                             <table>
